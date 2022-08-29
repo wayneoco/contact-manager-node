@@ -1,0 +1,37 @@
+[
+  {
+    "full_name": "Wayne Olson",
+    "phone_number": "555-389-3025",
+    "email": "wayne@wayneo.co",
+    "tags": "engineer",
+    "id": 1
+  },
+  {
+    "full_name": "Carol Morgan",
+    "phone_number": "555-435-1234",
+    "email": "csm@gmail.com",
+    "tags": "family",
+    "id": 2
+  },
+  {
+    "full_name": "Duane Morgan",
+    "phone_number": "555-345-1234",
+    "email": "dbm@gmail.com",
+    "tags": "family",
+    "id": 3
+  },
+  {
+    "full_name": "Pete Hanson",
+    "phone_number": "555-347-9823",
+    "email": "ph@ph.com",
+    "tags": "engineer",
+    "id": 4
+  },
+  {
+    "full_name": "Pete Jones",
+    "phone_number": "555-432-1234",
+    "email": "pj@pj.com",
+    "tags": "work",
+    "id": 5
+  }
+]
