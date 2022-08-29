@@ -1,3 +1,12 @@
+/*
+Summary of Classes:
+- ContactsModel
+- ContactsView
+- ContactFormView
+- SearchView
+- Controller
+*/
+
 'use strict';
 
 const BASE_URL = 'http://localhost:3000';
@@ -5,8 +14,7 @@ const API_PATH = 'api/contacts';
 const API_URL = `${BASE_URL}/${API_PATH}`;
 
 class ContactsModel {
-  constructor() {
-  }
+  constructor() {}
 
   async getAll() {
     try {
@@ -134,6 +142,7 @@ class ContactsView {
     this.contactCardScript = this.scripts['contact_card'];
   }
 
+  // event listener for opening the add contact form
   bindOpenFormAdd(handler) {
     this.addButton.addEventListener('click', e => {
       e.preventDefault();
@@ -141,6 +150,7 @@ class ContactsView {
     });
   }
 
+  // event listener for opening the edit contact form or deleting a contact
   bindContactsContainerClickEvents(handler) {
     this.container.addEventListener('click', e => {
       e.preventDefault();
@@ -148,6 +158,7 @@ class ContactsView {
     });
   }
 
+  // event listener for opening the search interface
   bindOpenSearch(handler) {
     this.searchIcon.addEventListener('click', e => {
       e.preventDefault();
@@ -155,6 +166,7 @@ class ContactsView {
     });
   }
 
+  // event listener for returning to main contact view from filtered by tag view
   bindTagFilterClose(handler) {
     this.tagFilterContainer.addEventListener('click', e => {
       e.preventDefault();
@@ -305,7 +317,6 @@ class ContactFormView {
     this.container.classList.replace('add', 'update');
     this.setInputValues(contact);
     this.wrapper.classList.toggle('show');
-
     this.focusFirstNameInputOnOpen();
   }
 
@@ -369,6 +380,7 @@ class ContactFormView {
     this.formInputs.forEach(input => input.classList.remove('invalid'));
   }
 
+  // pre-populate input fields with contact data when opening 'edit contact' form
   setInputValues(contact) {
     Object.keys(contact).forEach(key => {
       const input = this.form.querySelector(`#${key}`);
@@ -378,6 +390,8 @@ class ContactFormView {
     });
   }
 
+  // set tag options when add/edit contact form is opened
+  // also pre-selects tags when edit contact form is opened
   setTagSelectOptions(allTags = null, contactTags = null) {
     this.tagsSelect.replaceChildren();
     const updatedTags = [];
@@ -400,6 +414,7 @@ class ContactFormView {
       });
     }
 
+    // use Select2 library to implement tag selection interface
     $('.multiple-select').select2({
       placeholder: 'Select tag(s) or create a new one',
       data: updatedTags,
@@ -465,21 +480,9 @@ class SearchView {
     });
   }
 
-  bindInputFocus(handler) {
-    this.input.addEventListener('focus', () => {
-      handler();
-    });
-  }
-
   bindInputChange(handler) {
     this.input.addEventListener('input', () => {
       handler();
-    });
-  }
-
-  bindInvalidInput(handler) {
-    this.form.addEventListener('invalid', e => {
-      handler(e);
     });
   }
 
@@ -661,7 +664,18 @@ class Controller {
       } else if (container.classList.contains('update')) {
         this.handleUpdateContact(contact, contactId, contactName);
       }
+    } else {
+      this.dispatchBlurEventOnSubmit();
     }
+  }
+
+  dispatchBlurEventOnSubmit = () => {
+    this.contactFormView.formInputs.forEach(input => {
+      if (input.id !== 'id') {
+        const blur = new Event('blur');
+        input.dispatchEvent(blur);
+      }
+    });
   }
 
   async handleAddContact(contactData, contactName) {
