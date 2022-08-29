@@ -760,8 +760,8 @@ class Controller {
     this.contactsView.renderAllContacts(allContacts);
   }
 
-  async init() {
-    await this.initialContactsRender();
+  init() {
+    this.initialContactsRender();
   }
 }
 
