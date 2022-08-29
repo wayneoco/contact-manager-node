@@ -690,6 +690,10 @@ class Controller {
     const response = await this.contactsModel.addContact(contactData);
 
     if (response.ok) {
+      if (this.contactsView.tagFilterContainer.firstElementChild) {
+        const allContacts = await this.contactsModel.getAll();
+        this.contactsView.renderAllContacts(allContacts);
+      }
       const contact = await response.json();
       this.contactsView.renderNewContact(contact);
       this.contactFormView.cancelForm();
