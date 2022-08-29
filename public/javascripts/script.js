@@ -281,6 +281,10 @@ class ContactFormView {
       e.preventDefault();
       handler();
     });
+
+    this.modal.addEventListener('click', () => {
+      handler();
+    });
   }
 
   bindSubmit(handler) {
@@ -476,6 +480,10 @@ class SearchView {
   bindCancelSearch(handler) {
     this.cancelButton.addEventListener('click', e => {
       e.preventDefault();
+      handler();
+    });
+
+    this.modal.addEventListener('click', () => {
       handler();
     });
   }
