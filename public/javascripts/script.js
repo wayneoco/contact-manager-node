@@ -282,8 +282,8 @@ class ContactFormView {
       handler();
     });
 
-    this.modal.addEventListener('click', () => {
-      handler();
+    this.modal.addEventListener('click', (e) => {
+      if (e.target.id === 'contact-form-modal') handler();
     });
   }
 
@@ -483,8 +483,8 @@ class SearchView {
       handler();
     });
 
-    this.modal.addEventListener('click', () => {
-      handler();
+    this.modal.addEventListener('click', (e) => {
+      if (e.target.id === 'search-modal') handler();
     });
   }
 
