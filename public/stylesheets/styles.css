@@ -74,7 +74,7 @@ main {
   color: rgb(154, 154, 154)
 }
 
-#contact-form-wrapper {
+#contact-form-modal {
   visibility: hidden;
   position: fixed;
   top: 0;
@@ -103,7 +103,7 @@ main {
   z-index: 100;
 }
 
-#contact-form-wrapper.show {
+#contact-form-modal.show {
   visibility: visible;
   opacity: 1;
 }

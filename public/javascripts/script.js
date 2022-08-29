@@ -265,8 +265,8 @@ class ContactsView {
 
 class ContactFormView {
   constructor() {
-    this.wrapper = document.querySelector('#contact-form-wrapper');
-    this.container = this.wrapper.querySelector('#contact-form');
+    this.modal = document.querySelector('#contact-form-modal');
+    this.container = this.modal.querySelector('#contact-form');
     this.header = this.container.querySelector('h3');
     this.form = this.container.querySelector('form');
     this.formInputs = this.form.querySelectorAll('input:not([type=submit])');
@@ -307,7 +307,7 @@ class ContactFormView {
   openFormAdd() {
     this.header.textContent = 'Create Contact';
     this.container.classList.replace('update', 'add');
-    this.wrapper.classList.toggle('show');
+    this.modal.classList.toggle('show');
 
     this.focusFirstNameInputOnOpen();
   }
@@ -316,7 +316,7 @@ class ContactFormView {
     this.header.textContent = 'Update Contact';
     this.container.classList.replace('add', 'update');
     this.setInputValues(contact);
-    this.wrapper.classList.toggle('show');
+    this.modal.classList.toggle('show');
     this.focusFirstNameInputOnOpen();
   }
 
@@ -334,7 +334,7 @@ class ContactFormView {
       input.value = '';
     });
 
-    this.wrapper.classList.toggle('show');
+    this.modal.classList.toggle('show');
 
     if (!this.form.checkValidity()) {
       this.clearInvalidInputMarkers();
